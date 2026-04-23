@@ -53,9 +53,9 @@ git push origin main
 - Với Q8, hãy dùng file `data/input.txt` có sẵn trong repo.
 
 ## 5. Checklist trước khi nộp
-- [ ] Đã hoàn thiện `src/caesar.cpp`
-- [ ] Đã hoàn thiện `src/rail_fence.cpp`
-- [ ] Đã điền `tests/test_cases.md`
-- [ ] Đã điền `logs/run_log.md`
-- [ ] Đã điền `report-1page.md`
-- [ ] Đã push lên GitHub
+- [X] Đã hoàn thiện `src/caesar.cpp`
+- [X] Đã hoàn thiện `src/rail_fence.cpp`
+- [X] Đã điền `tests/test_cases.md`
+- [X] Đã điền `logs/run_log.md`
+- [X] Đã điền `report-1page.md`
+- [X] Đã push lên GitHub
