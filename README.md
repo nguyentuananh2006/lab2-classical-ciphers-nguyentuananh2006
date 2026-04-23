@@ -1,74 +1,30 @@
-# fit4012-lab2-classical-ciphers-starter
+# Lab 2: Classical Ciphers - Nguyễn Tuấn Anh
 
-Starter repo cho **FIT4012 – Lab 2: Mã hoá cổ điển**.
+## Thông tin sinh viên
+* **Họ và tên:** Nguyễn Tuấn Anh
+* **Mã sinh viên:** 1871020065
+* **Lớp:** CNTT 18-02
 
-## Mục tiêu
-- Cài đặt và mở rộng **Caesar Cipher**.
-- Cài đặt và mở rộng **Rail Fence Cipher**.
-- Làm quen với quy trình nộp bài qua **GitHub repo**.
-- Ghi lại minh chứng bằng **tests**, **logs** và **report-1page**.
+---
 
-## Nội dung chính của bài
-- **Caesar Cipher**
-  - Q1: xử lý chữ thường
-  - Q2: giữ dấu cách
-  - Q3: giải mã
-- **Rail Fence Cipher**
-  - Q4: thay đổi số ray và quan sát kết quả
-  - Q5: giải mã
-  - Q6: giữ dấu cách
-  - Q7: kiểm tra đầu vào
-  - Q8: đọc thông điệp từ file `input.txt`
+## Nội dung bài tập (Q1 - Q8)
+Dự án này hoàn thiện các yêu cầu về mã hóa cổ điển:
+- **Caesar** Cipher: Xử lý chữ hoa, chữ thường, giữ nguyên dấu cách và chức năng giải mã (Q1, Q2, Q3).
+- **Rail Fence** Cipher: Cài đặt zic-zac, giải mã, giữ dấu cách, kiểm tra đầu vào và đọc dữ liệu từ file `input.txt` (Q4, Q5, Q6, Q7, Q8).
 
-## Cấu trúc repo
-```text
-fit4012-lab2-classical-ciphers-starter/
-├── README.md
-├── assignment-obe.md
-├── assignment-classroom.md
-├── buoi3-guide.md
-├── report-1page.md
-├── src/
-│   ├── caesar.cpp
-│   └── rail_fence.cpp
-├── data/
-│   └── input.txt
-├── tests/
-│   └── test_cases.md
-├── logs/
-│   └── run_log.md
-└── .github/
-    ├── scripts/
-    │   └── check_lab2.py
-    └── workflows/
-        └── lab2-check.yml
-```
+## Cấu trúc thư mục
+Dự án tuân thủ cấu trúc chuẩn trên **GitHub**:
+- `src/`: Chứa `caesar.cpp` và `rail_fence.cpp`.
+- `data/`: Chứa file dữ liệu `input.txt`.
+- `tests/` & `logs/`: Minh chứng kiểm thử và nhật ký chạy chương trình.
 
-## Cách làm bài
-1. Nhận repo qua GitHub Classroom hoặc fork repo.
-2. Hoàn thiện `src/caesar.cpp` và `src/rail_fence.cpp`.
-3. Điền `tests/test_cases.md`.
-4. Điền `logs/run_log.md`.
-5. Hoàn thiện `report-1page.md`.
-6. Commit, push và nộp link repo.
-
-## Cách biên dịch
-### Caesar Cipher
+## Cách biên dịch và chạy
+Biên dịch bằng g++ chuẩn C++17:
 ```bash
-g++ -std=c++17 -O2 -Wall -Wextra -o caesar_bin src/caesar.cpp
+# Caesar
+g++ -std=c++17 -O2 -o caesar_bin src/caesar.cpp
 ./caesar_bin
-```
 
-### Rail Fence Cipher
-```bash
-g++ -std=c++17 -O2 -Wall -Wextra -o rail_bin src/rail_fence.cpp
+# Rail Fence
+g++ -std=c++17 -O2 -o rail_bin src/rail_fence.cpp
 ./rail_bin
-```
-
-## File dữ liệu mẫu
-Repo đã có sẵn file `data/input.txt` để phục vụ Q8.
-
-## Lưu ý
-- Không xóa các file trong `.github/`.
-- Không đổi tên file nguồn trừ khi giảng viên cho phép.
-- Nên có nhiều commit có ý nghĩa trong quá trình làm bài.
