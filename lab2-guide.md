@@ -1,16 +1,18 @@
-# Hướng dẫn thực hiện Lab 2 – Mã hoá cổ điển
+# Hướng dẫn thực hiện Lab 2 – Mã hoá cổ điển (Nguyễn Tuấn Anh)
 
-Chào mừng bạn đến với bài lab về **Caesar Cipher** và **Rail Fence Cipher**.
+**Sinh viên:** Nguyễn Tuấn Anh  
+**MSV:** 1871020065  
+**Lớp:** CNTT 18-02
 
 ## 1. Mục tiêu
 Bài này giúp bạn:
 - hiểu cách hoạt động của hai mã cổ điển;
 - biết cách cài đặt mã hoá và giải mã bằng C++;
-- biết cách kiểm thử, ghi log và nộp bài bằng GitHub repo.
+- biết cách kiểm thử, ghi log và nộp bài bằng **GitHub** repo.
 
 ## 2. Bạn sẽ làm gì?
 ### Phần A. Caesar Cipher
-- hoàn thiện mã hoá Caesar;
+- hoàn thiện mã hoá **Caesar**;
 - hỗ trợ chữ thường;
 - giữ dấu cách;
 - viết giải mã.
@@ -44,18 +46,11 @@ Hoàn thiện `report-1page.md`.
 git add .
 git commit -m "Complete Lab 2 classical ciphers"
 git push origin main
-```
 
-## 4. Mẹo nhỏ
-- Với Caesar, chú ý xử lý ký tự chữ cái và dấu cách riêng.
-- Với Rail Fence, hãy hình dung đường đi zigzag trước khi code.
-- Với input không hợp lệ, chương trình nên báo lỗi rõ ràng.
-- Với Q8, hãy dùng file `data/input.txt` có sẵn trong repo.
-
-## 5. Checklist trước khi nộp
-- [ ] Đã hoàn thiện `src/caesar.cpp`
-- [ ] Đã hoàn thiện `src/rail_fence.cpp`
-- [ ] Đã điền `tests/test_cases.md`
-- [ ] Đã điền `logs/run_log.md`
-- [ ] Đã điền `report-1page.md`
-- [ ] Đã push lên GitHub
+### 5. Checklist trước khi nộp
+- [X] Đã hoàn thiện `src/caesar.cpp`
+- [X] Đã hoàn thiện `src/rail_fence.cpp`
+- [X] Đã điền `tests/test_cases.md`
+- [X] Đã điền `logs/run_log.md`
+- [X] Đã điền `report-1page.md`
+- [X] Đã push lên GitHub
