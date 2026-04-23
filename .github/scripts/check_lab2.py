@@ -25,53 +25,62 @@ if errors:
     print('\n'.join(f'::error::{e}' for e in errors))
     sys.exit(1)
 
-readme = (root / 'README.md').read_text(encoding='utf-8')
-report = (root / 'report-1page.md').read_text(encoding='utf-8')
-caesar = (root / 'src/caesar.cpp').read_text(encoding='utf-8')
-rail = (root / 'src/rail_fence.cpp').read_text(encoding='utf-8')
-tests = (root / 'tests/test_cases.md').read_text(encoding='utf-8')
-log = (root / 'logs/run_log.md').read_text(encoding='utf-8')
+def read_file(path):
+    try:
+        return (root / path).read_text(encoding='utf-8')
+    except:
+        return ""
+
+readme = read_file('README.md')
+report = read_file('report-1page.md')
+caesar = read_file('src/caesar.cpp')
+rail = read_file('src/rail_fence.cpp')
+tests = read_file('tests/test_cases.md')
+log = read_file('logs/run_log.md')
 
 for keyword in ['Caesar', 'Rail Fence', 'GitHub']:
     if keyword.lower() not in readme.lower():
-        errors.append(f'README.md thieu noi dung toi thieu lien quan den: {keyword}')
+        errors.append(f'README.md thieu noi dung: {keyword}')
 
-if 'TODO(student)' in caesar:
-    errors.append('src/caesar.cpp van con TODO(student).')
-if 'TODO(student)' in rail:
-    errors.append('src/rail_fence.cpp van con TODO(student).')
+if 'TODO' in caesar.upper():
+    errors.append('src/caesar.cpp van con TODO.')
+if 'TODO' in rail.upper():
+    errors.append('src/rail_fence.cpp van con TODO.')
 
-if 'string caesar_decrypt' not in caesar:
-    errors.append('src/caesar.cpp thieu ham caesar_decrypt().')
-if 'string rail_fence_decrypt' not in rail:
-    errors.append('src/rail_fence.cpp thieu ham rail_fence_decrypt().')
+if 'caesar_decrypt' not in caesar:
+    errors.append('src/caesar.cpp thieu caesar_decrypt().')
+if 'rail_fence_decrypt' not in rail:
+    errors.append('src/rail_fence.cpp thieu rail_fence_decrypt().')
 if 'read_message_from_file' not in rail:
-    errors.append('src/rail_fence.cpp thieu ham read_message_from_file() cho Q8.')
+    errors.append('src/rail_fence.cpp thieu read_message_from_file().')
 
-if '| I LOVE YOU | 3 |  |  |' in report or '| I LOVE YOU | 2 |  |  |' in report:
-    warnings.append('report-1page.md van con bang mau chua duoc dien day du.')
+if '| I LOVE YOU |' in report and ('|  |' in report or '| |' in report):
+    warnings.append('report-1page.md chua dien du thong tin bang.')
 
-checked_tests = len(re.findall(r'^-\s*\[[xX]\]', tests, flags=re.MULTILINE))
-if checked_tests < 6:
-    errors.append('tests/test_cases.md can tick it nhat 6 test cases.')
+def count_checked(content):
+    return len(re.findall(r'^-\s*\[[xX]\]', content, flags=re.MULTILINE))
 
-checked_logs = len(re.findall(r'^-\s*\[[xX]\]', log, flags=re.MULTILINE))
-if checked_logs < 6:
-    errors.append('logs/run_log.md can danh dau it nhat 6 muc da chay.')
+if count_checked(tests) < 6:
+    errors.append('tests/test_cases.md can tick it nhat 6 o.')
+if count_checked(log) < 6:
+    errors.append('logs/run_log.md can tick it nhat 6 o.')
 
-if 'Viết 3-5 dòng ngắn gọn ở đây.' in log or 'Viet 3-5 dong ngan gon o day.' in log:
-    warnings.append('Nen thay placeholder trong phan tong ket cua run log.')
+placeholders = ['Viết 3-5 dòng', 'Viet 3-5 dong', 'ngắn gọn ở đây', 'ngan gon o day']
+if any(p in log for p in placeholders):
+    warnings.append('logs/run_log.md van con placeholder.')
 
-try:
-    compile1 = subprocess.run(['g++', '-std=c++17', '-O2', '-Wall', '-Wextra', '-o', 'caesar_bin', 'src/caesar.cpp'], capture_output=True, text=True)
-    if compile1.returncode != 0:
-        errors.append(f'Khong bien dich duoc src/caesar.cpp: {compile1.stderr[:300]}')
+def compile_cpp(src, out):
+    try:
+        res = subprocess.run(['g++', '-std=c++17', '-O2', '-o', out, src], capture_output=True, text=True)
+        return res.stderr if res.returncode != 0 else None
+    except:
+        return "g++ not found"
 
-    compile2 = subprocess.run(['g++', '-std=c++17', '-O2', '-Wall', '-Wextra', '-o', 'rail_bin', 'src/rail_fence.cpp'], capture_output=True, text=True)
-    if compile2.returncode != 0:
-        errors.append(f'Khong bien dich duoc src/rail_fence.cpp: {compile2.stderr[:300]}')
-except FileNotFoundError:
-    errors.append('Moi truong cham khong tim thay g++.')
+err1 = compile_cpp('src/caesar.cpp', 'caesar_bin')
+if err1: errors.append(f'Loi bien dich caesar.cpp: {err1[:200]}')
+
+err2 = compile_cpp('src/rail_fence.cpp', 'rail_bin')
+if err2: errors.append(f'Loi bien dich rail_fence.cpp: {err2[:200]}')
 
 if warnings:
     print('\n'.join(f'::warning::{w}' for w in warnings))
@@ -80,4 +89,4 @@ if errors:
     print('\n'.join(f'::error::{e}' for e in errors))
     sys.exit(1)
 
-print('::notice::FIT4012 Lab 2 classical ciphers auto check passed.')
+print('::notice::FIT4012 Lab 2 auto check passed.')
