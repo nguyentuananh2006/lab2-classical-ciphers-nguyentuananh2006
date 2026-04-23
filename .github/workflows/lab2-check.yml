@@ -15,5 +15,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
       - name: Run Lab 2 classical ciphers checker
         run: python3 .github/scripts/check_lab2.py
